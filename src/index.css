@@ -11,3 +11,48 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.bg-green-light{
+  background: aquamarine;
+}
+
+.banner-wrap {
+  height: auto;
+  width: 100%;
+  margin: 0;
+  padding: 20px;
+}
+
+.desc {
+  width: 50%;
+  margin: auto;
+}
+
+.header-btn {
+  margin-left: 12px;
+}
+
+.inner-beader-section {
+  background: #e7e7e7;
+}
+
+.card-img,
+.card-img-bottom,
+.card-img-top {
+  max-height: 170px;
+}
+
+.navbar-expand-lg .navbar-collapse {
+  display: block !important;
+}
+
+.navbar-collapse {
+  flex-grow: 0 !important;
+}
+
+nav.navbar {
+  background: aquamarine;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
