@@ -1,8 +1,30 @@
 import React,{ useState } from 'react';
 
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import { Navbar , Nav ,Container,Modal,Form,Button } from 'react-bootstrap';      
 function Header() {
+  const [validated, setValidated] = useState(false);
+
+  const handleSubmit = (event) => {
+   
+    const form = event.currentTarget;
+   
+    if (form.checkValidity() === false) {
+      
+      event.preventDefault();
+      event.stopPropagation();
+    }
+  if(setValidated(true)){
+   
+    console.log(form.elements.email.value);
+    console.log(form.pass.value);
+    return;
+  }
+   
+    
+    
+  };
   const [login, setShowlogin] = useState(false);
 
   const handleCloselogin = () => setShowlogin(false);
@@ -38,32 +60,35 @@ function Header() {
           <Modal.Title>Login</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+          <Form noValidate validated={validated} onSubmit={handleSubmit} >
+            <Form.Group   className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Email address</Form.Label>
               <Form.Control
                 type="email"
                 placeholder="name@example.com"
+                name="email"
                 autoFocus
+                required
               />
             </Form.Group>
-            <Form.Group
+            <Form.Group 
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
+              
             >
               <Form.Label>Password</Form.Label>
               <Form.Control type="password"
                 placeholder="Password"
+                required
+                name="pass"
                  />
             </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          
-          <Button variant="primary" className="btn-gobol" onClick={handleCloselogin}>
+            <Button variant="primary" type="submit" className="btn-gobol" >
            Login
           </Button>
-        </Modal.Footer>
+          </Form>
+        </Modal.Body>
+       
       </Modal>        
         {/* signup */}
         <Modal show={signup} onHide={handleClosesignup}>
@@ -71,13 +96,15 @@ function Header() {
           <Modal.Title>Sign Up</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form noValidate validated={validated} onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Email address</Form.Label>
               <Form.Control
                 type="email"
                 placeholder="name@example.com"
                 autoFocus
+                required
+                name="email"
               />
             </Form.Group>
             <Form.Group
@@ -87,16 +114,17 @@ function Header() {
               <Form.Label>Password</Form.Label>
               <Form.Control type="password"
                 placeholder="Password"
+                required
+                minLength={8}
+                name="pass"
                  />
             </Form.Group>
+            <Button variant="primary" type="submit" className="btn-gobol" >
+            Sign Up
+          </Button>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          
-          <Button variant="primary" className="btn-gobol" onClick={handleClosesignup}>
-          Sign Up
-          </Button>
-        </Modal.Footer>
+        
       </Modal>
       
     </div>
